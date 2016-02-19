@@ -1,0 +1,12 @@
+<ion-view view-title="Teachers" >
+  <ion-content>
+      <ion-list>
+<!--      kek    <ion-item ng-repeat="teacher in teachers" href="#/app/teachers/{{teacher.ID}}">-->
+<ion-item ng-repeat="teacher in teachers" ui-sref="app.teachersDetails({teacherId: teacher.ID, teacher: teacher})">
+                {{ teacher.FIO}}
+              {{teacher.ID}}
+          </ion-item>
+      </ion-list>
+      </ion-list>
+  </ion-content>
+</ion-view>

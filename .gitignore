@@ -1,0 +1,9 @@
+cordova-plugin-googlemaps-master
+/*
+!/.gitignore
+!/platforms
+/platforms/*
+!/platforms/ios
+/platforms/ios/*
+!/platforms/ios/www
+
