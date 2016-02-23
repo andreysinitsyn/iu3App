@@ -1,4 +1,4 @@
-angular.module('iu3App.controllers', ['ionic', 'ngCordova'])
+angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'jett.ionic.filter.bar'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -41,14 +41,50 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova'])
   };
 })
 
-.controller('GetTeachersJson', ['$scope', '$http', function($scope,$http) {
-                                
+.controller('GetTeachersJson', ['$scope', '$http', '$ionicFilterBar',  function($scope,$http, $ionicFilterBar){
+                                 var filterBarInstance;
                                 $http.get("http://iu3.bmstu.ru/WebApi/People")
                                 .success(function (data) {
-                                         $scope.teachers = data;
-                                         
-                                         
+                                $scope.teachers = data;
                                          });
+                                
+                                $scope.showFilterBar = function () {
+                                filterBarInstance = $ionicFilterBar.show({
+                                                                         
+                                                                         items: $scope.data,
+                                                                         filterProperties: ['ID', 'FIO'],
+                                                                         update: function (filteredItems, filterText) {
+                                                                         $scope.data = filteredItems;
+                                                                         if (filterText) {
+                                                                         console.log('filteredItems');
+                                                                         console.log(filteredItems);
+                                                                         console.log(filterText);
+                                                                         }
+                                                                         }
+                                                                         });
+                                
+                                };
+                                
+                                $scope.refreshItems = function () {
+                                if (filterBarInstance) {
+                                filterBarInstance();
+                                filterBarInstance = null;
+                                }
+                                
+                                $timeout(function () {
+                                         getItems();
+                                         $scope.$broadcast('scroll.refreshComplete');
+                                         }, 1000);
+                                };
+                                
+                                
+//                                $scope.showFilterBar = function () {
+//                                console.log('FILTER 1');
+//                                
+//                                
+//                                };
+                                
+                                
                                 }])
 
 .controller('TeacherCtrl', ['$scope', '$stateParams',
