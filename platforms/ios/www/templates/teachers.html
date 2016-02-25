@@ -5,17 +5,22 @@
         </button>
     </ion-nav-buttons>
     
-  <ion-content>
-      
-      <ion-list>
-<!--      kek    <ion-item ng-repeat="teacher in teachers" href="#/app/teachers/{{teacher.ID}}">-->
-<ion-item ng-repeat="teacher in teachers" ui-sref="app.teachersDetails({teacherId: teacher.ID, teacher: teacher})">
+    <ion-content>
+        
+        <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()">
+        </ion-refresher>
+        
+        <ion-list>
+            <!--      kek    <ion-item ng-repeat="teacher in teachers" href="#/app/teachers/{{teacher.ID}}">-->
+            <ion-item collection-repeat="teacher in teachers" ui-sref="app.teachersDetails({teacherId: teacher.ID, teacher: teacher})">
                 {{ teacher.FIO}}
-              {{teacher.ID}}
-          </ion-item>
-      </ion-list>
-      </ion-list>
-      
-      
-  </ion-content>
+                
+            </ion-item>
+        </ion-list>
+        <div ng-if="teachers !== undefined && !teachers.length" class="no-results">
+            <p>No Results</p>
+        </div>
+        
+        
+    </ion-content>
 </ion-view>

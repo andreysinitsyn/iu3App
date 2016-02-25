@@ -41,96 +41,93 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'jett.ionic.filter.b
   };
 })
 
-.controller('GetTeachersJson', ['$scope', '$http', '$ionicFilterBar',  function($scope,$http, $ionicFilterBar){
-                                 var filterBarInstance;
-                                $http.get("http://iu3.bmstu.ru/WebApi/People")
-                                .success(function (data) {
-                                $scope.teachers = data;
-                                         });
-                                
-                                $scope.showFilterBar = function () {
-                                filterBarInstance = $ionicFilterBar.show({
-                                                                         
-                                                                         items: $scope.data,
-                                                                         filterProperties: ['ID', 'FIO'],
-                                                                         update: function (filteredItems, filterText) {
-                                                                         $scope.data = filteredItems;
-                                                                         if (filterText) {
-                                                                         console.log('filteredItems');
-                                                                         console.log(filteredItems);
-                                                                         console.log(filterText);
-                                                                         }
-                                                                         }
-                                                                         });
-                                
-                                };
-                                
-                                $scope.refreshItems = function () {
-                                if (filterBarInstance) {
-                                filterBarInstance();
-                                filterBarInstance = null;
-                                }
-                                
-                                $timeout(function () {
-                                         getItems();
-                                         $scope.$broadcast('scroll.refreshComplete');
-                                         }, 1000);
-                                };
-                                
-                                
-//                                $scope.showFilterBar = function () {
-//                                console.log('FILTER 1');
-//                                
-//                                
-//                                };
-                                
-                                
-                                }])
+.controller('GetTeachersJson', ['$scope', '$http', '$timeout', '$ionicFilterBar',  function($scope,$http,$timeout, $ionicFilterBar){
 
-.controller('TeacherCtrl', ['$scope', '$stateParams',
-                            function($scope, $stateParams) {
-                            console.log('teacher ctrl', $stateParams)
-                            $scope.ID = $stateParams.teacherId;
-                            $scope.teacher = $stateParams.teacher;
-                            
-                            }])
+        var filterBarInstance;
+
+        function getItems () {
+        $http.get("http://iu3.bmstu.ru/WebApi/People")
+        .success(function (data) {
+        $scope.teachers = data;
+                 });
+        }
+
+        getItems();
+
+        $scope.showFilterBar = function () {
+        filterBarInstance = $ionicFilterBar.show({
+
+             items: $scope.teachers,
+             filterProperties: ['FIO'],
+               update: function (filteredItems, filterText) {
+               $scope.teachers = filteredItems;
+                 if (filterText) {
+                 console.log('filteredItems');
+                 console.log(filteredItems);
+                 console.log(filterText);
+                 }
+               }
+             });
+
+        };
+
+        $scope.refreshItems = function () {
+        if (filterBarInstance) {
+        filterBarInstance();
+        filterBarInstance = null;
+        }
+
+        $timeout(function () {
+                 getItems();
+                 $scope.$broadcast('scroll.refreshComplete');
+               }, 1000);
+        };
+
+}])
+
+.controller('TeacherCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
+                  console.log('teacher ctrl', $stateParams)
+                  $scope.ID = $stateParams.teacherId;
+                  $scope.teacher = $stateParams.teacher;
+
+}])
 
 .controller('MapController', function($scope, $cordovaGeolocation, $ionicLoading, $ionicPlatform) {
-            
+
             $ionicPlatform.ready(function() {
-                                 
-                                 $ionicLoading.show({
-                                                    template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
-                                                    });
-                                 
-                                 var posOptions = {
-                                 enableHighAccuracy: true,
-                                 timeout: 20000,
-                                 maximumAge: 0
-                                 };
-                                 $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-                                                                                         var lat  = position.coords.latitude;
-                                                                                         var long = position.coords.longitude;
-                                                                                         
-                                                                                         var myLatlng = new google.maps.LatLng(lat, long);
-                                                                                         
-                                                                                         var mapOptions = {
-                                                                                         center: myLatlng,
-                                                                                         zoom: 16,
-                                                                                         mapTypeId: google.maps.MapTypeId.ROADMAP
-                                                                                         };          
-                                                                                         
-                                                                                         var map = new google.maps.Map(document.getElementById("map"), mapOptions);          
-                                                                                         
-                                                                                         $scope.map = map;   
-                                                                                         $ionicLoading.hide();           
-                                                                                         
-                                                                                         }, function(err) {
-                                                                                         $ionicLoading.hide();
-                                                                                         console.log(err);
-                                                                                         });
-                                 });               
-            })
+
+                 $ionicLoading.show({
+                   template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
+                  });
+
+                 var posOptions = {
+                 enableHighAccuracy: true,
+                 timeout: 20000,
+                 maximumAge: 0
+                 };
+                 $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+                                     var lat  = position.coords.latitude;
+                                     var long = position.coords.longitude;
+
+                                     var myLatlng = new google.maps.LatLng(lat, long);
+
+                                     var mapOptions = {
+                                     center: myLatlng,
+                                     zoom: 16,
+                                     mapTypeId: google.maps.MapTypeId.ROADMAP
+                                     };
+
+                                     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+                                     $scope.map = map;
+                                     $ionicLoading.hide();
+
+                                     }, function(err) {
+                                     $ionicLoading.hide();
+                                     console.log(err);
+                                     });
+          });
+})
 
 
 .controller('PlaylistsCtrl', function($scope) {
