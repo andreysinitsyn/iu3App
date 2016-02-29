@@ -22,7 +22,7 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'jett.ioni
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicFilterBarConfigProvider) {
   $stateProvider
 
     .state('app', {
@@ -42,6 +42,16 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'jett.ioni
     }
   })
 
+  .state('app.groupslist', {
+    url: '/groupslist',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/groupslist.html',
+        controller: 'GroupsCtrl'
+      }
+    }
+  })
+
   .state('app.browse', {
       url: '/browse',
       views: {
@@ -50,7 +60,7 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'jett.ioni
         }
       }
     })
-        
+
         .state('app.teachers', {
                url: '/teachers',
                views: {
@@ -60,7 +70,7 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'jett.ioni
                }
                }
                })
-        
+
         .state('app.teachersDetails', {
                // params: { teacher: null, }
                url: '/:teacherId',
@@ -72,7 +82,7 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'jett.ioni
                }
                }
                })
-        
+
     .state('app.playlists', {
       url: '/playlists',
       views: {

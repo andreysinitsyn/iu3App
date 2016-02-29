@@ -92,6 +92,18 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'jett.ionic.filter.b
 
 }])
 
+.controller('GroupsCtrl', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
+                  function getItems () {
+                      $http.get("http://iu3.bmstu.ru/WebApi/GroupNames")
+                      .success(function (data) {
+                      $scope.items = data;
+                      });
+                  }
+
+                  getItems();
+
+}])
+
 .controller('MapController', function($scope, $cordovaGeolocation, $ionicLoading, $ionicPlatform) {
 
             $ionicPlatform.ready(function() {
