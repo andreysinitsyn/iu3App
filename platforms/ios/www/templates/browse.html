@@ -1,5 +1,37 @@
+
 <ion-view view-title="Browse">
-  <ion-content>
-    <h1>Browse</h1>
-  </ion-content>
+    <ion-content>
+        <h1>Хуй</h1>
+        <ion-content ng-controller="BeaconCtrl">
+            <div class="list">
+                <div class="item" ng-repeat="(key, value) in beacons">
+                    <div class="row">
+                        <div class="col truncate">
+                            {{value.uuid}}
+                        </div>
+                        <div class="col truncate">
+                            {{value.proximity}}
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    <div class="row">
+                        <div class="col">
+                            {{value.uuid}}
+                            major: {{value.major}}
+                        </div>
+                        <div class="col">
+                            minor: {{value.minor}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{value.proximity}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+    </ion-content>
 </ion-view>

@@ -1,4 +1,4 @@
-angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'jett.ionic.filter.bar'])
+angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'jett.ionic.filter.bar', 'ngCordovaBeacon'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -92,15 +92,29 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'jett.ionic.filter.b
 
 }])
 
-.controller('GroupsCtrl', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
-                  function getItems () {
-                      $http.get("http://iu3.bmstu.ru/WebApi/GroupNames")
-                      .success(function (data) {
-                      $scope.items = data;
-                      });
-                  }
+.controller('ScheduleCtrl', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
+                             console.log('schedule ctrl', $stateParams)
+                             var groupName = $stateParams.groupName;
+                             console.log('test', groupName)
+                             function getItems () {
+                             $http.get("http://iu3.bmstu.ru/WebApi/WeekSchedule?week=3&filter=" + groupName)
+                             .success(function (data) {
+                                      $scope.days = data;
+                                      });
+                             }
+                             getItems ();
+                             
+}])
 
-                  getItems();
+.controller('GroupsCtrl', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
+                           function getItems () {
+                           $http.get("http://iu3.bmstu.ru/WebApi/GroupNames")
+                           .success(function (data) {
+                                    $scope.items = data;
+                                    });
+                           }
+                           
+                           getItems();
 
 }])
 
@@ -141,6 +155,28 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'jett.ionic.filter.b
           });
 })
 
+.controller('BeaconCtrl', function($scope, $rootScope, $ionicPlatform, $cordovaBeacon) {
+
+            $scope.beacons = {};
+
+            $ionicPlatform.ready(function() {
+
+                                 $cordovaBeacon.requestWhenInUseAuthorization();
+
+                                 $rootScope.$on("$cordovaBeacon:didRangeBeaconsInRegion", function(event, pluginResult) {
+                                                var uniqueBeaconKey;
+                                                for(var i = 0; i < pluginResult.beacons.length; i++) {
+                                                uniqueBeaconKey = pluginResult.beacons[i].uuid + ":" + pluginResult.beacons[i].major + ":" + pluginResult.beacons[i].minor;
+                                                $scope.beacons[uniqueBeaconKey] = pluginResult.beacons[i];
+                                                }
+                                                $scope.$apply();
+                                                });
+
+                                 $cordovaBeacon.startRangingBeaconsInRegion($cordovaBeacon.createBeaconRegion("estimote", "b9407f30-f5f8-466e-aff9-25556b57fe6d"));
+
+                                 });
+
+})
 
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [

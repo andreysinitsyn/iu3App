@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'jett.ionic.filter.bar'])
+angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'jett.ionic.filter.bar', 'ngCordovaBeacon'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -52,16 +52,18 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'jett.ioni
     }
   })
 
+
   .state('app.browse', {
       url: '/browse',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/browse.html',
+          controller: 'BeaconCtrl'
         }
       }
     })
 
-        .state('app.teachers', {
+    .state('app.teachers', {
                url: '/teachers',
                views: {
                'menuContent': {
@@ -79,6 +81,18 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'jett.ioni
                'menuContent': {
                templateUrl: 'templates/teacher.html',
                controller: 'TeacherCtrl'
+               }
+               }
+               })
+        
+        .state('app.schedule', {
+               // params: { teacher: null, }
+               url: '/:groupName',
+               params : { group: null, },
+               views: {
+               'menuContent': {
+               templateUrl: 'templates/schedule.html',
+               controller: 'ScheduleCtrl'
                }
                }
                })
