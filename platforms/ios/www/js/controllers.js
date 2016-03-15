@@ -1,4 +1,4 @@
-angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'jett.ionic.filter.bar', 'ngCordovaBeacon'])
+angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'jett.ionic.filter.bar'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -103,7 +103,7 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'jett.ionic.filter.b
                                       });
                              }
                              getItems ();
-                             
+
 }])
 
 .controller('GroupsCtrl', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
@@ -113,7 +113,7 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'jett.ionic.filter.b
                                     $scope.items = data;
                                     });
                            }
-                           
+
                            getItems();
 
 }])
@@ -155,28 +155,28 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'jett.ionic.filter.b
           });
 })
 
-.controller('BeaconCtrl', function($scope, $rootScope, $ionicPlatform, $cordovaBeacon) {
-
-            $scope.beacons = {};
-
-            $ionicPlatform.ready(function() {
-
-                                 $cordovaBeacon.requestWhenInUseAuthorization();
-
-                                 $rootScope.$on("$cordovaBeacon:didRangeBeaconsInRegion", function(event, pluginResult) {
-                                                var uniqueBeaconKey;
-                                                for(var i = 0; i < pluginResult.beacons.length; i++) {
-                                                uniqueBeaconKey = pluginResult.beacons[i].uuid + ":" + pluginResult.beacons[i].major + ":" + pluginResult.beacons[i].minor;
-                                                $scope.beacons[uniqueBeaconKey] = pluginResult.beacons[i];
-                                                }
-                                                $scope.$apply();
-                                                });
-
-                                 $cordovaBeacon.startRangingBeaconsInRegion($cordovaBeacon.createBeaconRegion("estimote", "b9407f30-f5f8-466e-aff9-25556b57fe6d"));
-
-                                 });
-
-})
+// .controller('BeaconCtrl', function($scope, $rootScope, $ionicPlatform, $cordovaBeacon) {
+//
+//             $scope.beacons = {};
+//
+//             $ionicPlatform.ready(function() {
+//
+//                                  $cordovaBeacon.requestWhenInUseAuthorization();
+//
+//                                  $rootScope.$on("$cordovaBeacon:didRangeBeaconsInRegion", function(event, pluginResult) {
+//                                                 var uniqueBeaconKey;
+//                                                 for(var i = 0; i < pluginResult.beacons.length; i++) {
+//                                                 uniqueBeaconKey = pluginResult.beacons[i].uuid + ":" + pluginResult.beacons[i].major + ":" + pluginResult.beacons[i].minor;
+//                                                 $scope.beacons[uniqueBeaconKey] = pluginResult.beacons[i];
+//                                                 }
+//                                                 $scope.$apply();
+//                                                 });
+//
+//                                  $cordovaBeacon.startRangingBeaconsInRegion($cordovaBeacon.createBeaconRegion("estimote", "b9407f30-f5f8-466e-aff9-25556b57fe6d"));
+//
+//                                  });
+//
+// })
 
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [

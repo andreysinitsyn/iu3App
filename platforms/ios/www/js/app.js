@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'jett.ionic.filter.bar', 'ngCordovaBeacon'])
+angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'jett.ionic.filter.bar'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -57,8 +57,7 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'jett.ioni
       url: '/browse',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html',
-          controller: 'BeaconCtrl'
+          templateUrl: 'templates/browse.html'
         }
       }
     })

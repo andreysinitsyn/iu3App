@@ -1,4 +1,4 @@
-/*
+cordova.define("com.unarin.cordova.beacon.BeaconRegion", function(require, exports, module) { /*
  Licensed to the Apache Software Foundation (ASF) under one
  or more contributor license agreements.  See the NOTICE file
  distributed with this work for additional information
@@ -97,3 +97,5 @@ BeaconRegion.U_INT_16_MIN_VALUE = 0;
 
 module.exports = BeaconRegion;
 
+
+});
