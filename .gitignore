@@ -6,4 +6,5 @@ cordova-plugin-googlemaps-master
 !/platforms/ios
 /platforms/ios/*
 !/platforms/ios/www
+/platforms/ios/www/lib/*
 
