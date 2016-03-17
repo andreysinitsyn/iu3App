@@ -52,12 +52,23 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'jett.ioni
     }
   })
 
+  .state('app.beacon', {
+    url: '/beacon',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/beacon.html',
+        controller:  'BeaconCtrl'
+      }
+    }
+  })
+
 
   .state('app.browse', {
       url: '/browse',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/browse.html',
+          controller:  'BeaconCtrl'
         }
       }
     })
@@ -83,7 +94,7 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'jett.ioni
                }
                }
                })
-        
+
         .state('app.schedule', {
                // params: { teacher: null, }
                url: '/:groupName',

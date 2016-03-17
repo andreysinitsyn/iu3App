@@ -178,6 +178,29 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'jett.ionic.filter.b
 //
 // })
 
+//.controller('BeaconCtrl' ['$scope', '$rootScope', '$ionicPlatform', function($scope, $rootScope, $ionicPlatform) {
+.controller('BeaconCtrl' , function() {
+
+  //beaconId: B7D1027D-6788-416E-994F-EA11075F1765
+  function test () {
+    console.log('beaconTest start');
+  }
+
+  test ();
+
+  // var uuid = 'B7D1027D-6788-416E-994F-EA11075F1765'; // mandatory
+  //   var identifier = 'myBeacon'; // mandatory
+  //   var minor = 1000; // optional, defaults to wildcard if left empty
+  //   var major = 5; // optional, defaults to wildcard if left empty
+  //
+  //   // throws an error if the parameters are not valid
+  //   var beaconRegion = new cordova.plugins.locationManager.BeaconRegion(identifier, uuid, major, minor);
+  //
+  //   return beaconRegion;
+  //   console.log('beaconTest', beaconRegion);
+
+})
+
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
