@@ -1,7 +1,27 @@
-<ion-view view-title="Beacon">
-  <ion-content>
-    <h1>Beacon</h1>
-    <button class="button" ng-click="test()">Hit me</button>
-
+<ion-view view-title="BeaconCtrl">
+  <ion-content ng-controller="BeaconCtrl">
+    <p>Turn on BT</p>
+      <div class="list">
+          <div class="item" ng-repeat="(key, value) in beacons">
+              <div class="row">
+                  <div class="col truncate">
+                      {{value.uuid}}
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+                      major: {{value.major}}
+                  </div>
+                  <div class="col">
+                      minor: {{value.minor}}
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+                      {{value.proximity}}
+                  </div>
+              </div>
+          </div>
+      </div>
   </ion-content>
 </ion-view>
