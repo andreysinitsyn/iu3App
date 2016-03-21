@@ -68,7 +68,7 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'ngCordova
       views: {
         'menuContent': {
           templateUrl: 'templates/browse.html',
-          controller:  'BeaconCtrl'
+          controller:  'BeaconCtrll'
         }
       }
     })
