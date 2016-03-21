@@ -1,9 +1,20 @@
 <ion-view view-title="Расписание">
   <ion-content>
-    Расписание
+  <!-- </br> -->
 
-    <div ng-repeat="day in days">
+    <!-- <div ng-repeat="day in days">
    <span>{{day.Day}}</span> <span>{{day.Location}}</span>
- </div>
+ </div> -->
+
+ <ion-list>
+        <ul ng-repeat="(key, value) in days | groupBy: 'Day'">
+          <li class="item-divider">&nbsp;&nbsp;{{ key }}</li>
+          <li class="item" ng-repeat="day in value">
+            <p>Предмет: {{ day.Course.Name }}</p>
+            <p>Аудитория: {{ day.Location }}</p>
+          </li>
+        </ul>
+      </ion-list>
+
   </ion-content>
 </ion-view>

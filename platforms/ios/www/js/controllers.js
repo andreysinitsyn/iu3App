@@ -1,4 +1,4 @@
-angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', 'jett.ionic.filter.bar'])
+angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', 'jett.ionic.filter.bar', 'angular.filter'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -100,6 +100,21 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
                              $http.get("http://iu3.bmstu.ru/WebApi/WeekSchedule?week=3&filter=" + groupName)
                              .success(function (data) {
                                       $scope.days = data;
+                                      for (var i in data) {
+                                        if (data[i].Day == "2"){
+                                          data[i].Day = "Понедельник";
+                                        } else if (data[i].Day == "3"){
+                                          data[i].Day = "Вторник";
+                                        } else if (data[i].Day == "4"){
+                                          data[i].Day = "Среда";
+                                        } else if (data[i].Day == "5"){
+                                          data[i].Day = "Четверг";
+                                        } else if (data[i].Day == "6"){
+                                          data[i].Day = "Пятница";
+                                        } else if (data[i].Day == "7"){
+                                          data[i].Day = "Суббота";
+                                        }
+                                      }
                                       });
                              }
                              getItems ();
