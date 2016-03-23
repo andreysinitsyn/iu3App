@@ -297,7 +297,7 @@ app.didRangeBeaconsInRegion = function(pluginResult)
 	// The region identifier is the page id.
 	var pageId = pluginResult.region.identifier
 
-	//console.log('ranged beacon: ' + pageId + ' ' + beacon.proximity)
+	console.log('ranged beacon: ' + pageId + ' ' + beacon.proximity)
 
 	// If the beacon is close and represents a new page, then show the page.
 	if ((beacon.proximity == 'ProximityImmediate' || beacon.proximity == 'ProximityNear')
@@ -309,7 +309,7 @@ app.didRangeBeaconsInRegion = function(pluginResult)
 
 	// If the beacon represents the current page but is far away,
 	// then show the default page.
-	if ((beacon.proximity == 'ProximityFar' || beacon.proximity == 'ProximityUnknown')
+	if (beacon.proximity == 'ProximityFar'
 		&& app.currentPage == pageId)
 	{
 		app.gotoPage('page-default')
