@@ -26,3 +26,53 @@
 .scroll {
     height: 100%;
 }
+
+.custom {
+  background-color: #6C7A89 !important; /* This sets the background color*/
+ }
+
+/*Set the background to transparent for ion-item*/
+.custom .item {
+  background-color: transparent;
+  border:none;   /*Removes all borders*/
+  border-top: 1px solid;   /*Top Border for each menu item*/
+  border-bottom:1px solid;   /*Bottom border for each menu item*/
+  border-color: #ECECEC;   /*Sets colors for top and bottom border*/
+  color: white;    /*Text color for each item*/
+}
+
+/*Changes the border for the last item*/
+.custom .item:last-child {
+  /*border-top: none;*/
+  border-bottom: 1px solid #ECECEC;
+}
+
+.custom .item-complex .item-content, .dark .item-radio .item-content {
+  background-color: transparent;
+}
+
+.custom .item-content.activated{
+    border-color: #ECECEC !important;
+    background-color: #34495E !important;
+}
+
+/*Just makes the type white*/
+.custom h2,
+.custom h3,
+.custom p,
+.custom a {
+  color: white;  /*Text color for each item, overrides the color property above*/
+}
+
+.item.active, .item.activated, .item-complex.active .item-content, .item-complex.activated .item-content, .item .item-content.active, .item .item-content.activated {
+  border-color: #ccc;
+  background-color: #D9D9D9;
+  height: 100%}
+
+/*#Logo {
+    display: block;
+    padding-top: 7px;
+    margin: 1em auto 0;
+    width: 75%;
+    height: 80%;
+}*/

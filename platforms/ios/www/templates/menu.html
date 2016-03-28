@@ -13,30 +13,37 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-header-bar style="background-color: #DADFE1;">
-      <h1 class="title">Навигация</h1>
+    <ion-header-bar style="background-color:#6C7A89; background-image:none; position:absolute; height: 107px; padding-left:15px; padding-top:15px">
+
+
+                    <!-- <p align=left><font style='font-size: 10pt; color: white;'>МТГУ им. Н.Э. Баумана</font>
+                    <font style='font-size: 10pt; color: white;'>Информационные системы</font>
+                    <font style='font-size: 10pt; color: white;'>и телекоммуникации</font></p> -->
+                    <!-- <img align="right"  id="Logo" src="./img/iu3logo.png"> -->
+
+      <!-- <h1 class="title" style="color:white;">Навигация</h1> -->
     </ion-header-bar>
-    <ion-content style="background-color: #DADFE1;">
+    <ion-content class="custom has-header has-subheader">
       <ion-list>
-          <ion-item menu-close href="#/app/teachers" style="background-color: #C2A5A5 !important">
+          <ion-item class="item item-icon-left" menu-close href="#/app/teachers"><i class="icon ion-ios-people-outline"></i>
               Преподаватели
           </ion-item>
-        <ion-item menu-close ng-click="login()">
+        <ion-item class="item item-icon-left" menu-close ng-click="login()"><i class="icon ion-ios-personadd-outline"></i>
           Login
         </ion-item>
-        <ion-item menu-close href="#/app/search">
+        <ion-item class="item item-icon-left" menu-close href="#/app/search"><i class="icon ion-ios-information-outline"></i>
           Контакты
         </ion-item>
-        <ion-item menu-close href="#/app/groupslist">
+        <ion-item class="item item-icon-left" menu-close href="#/app/groupslist"><i class="icon ion-ios-list-outline"></i>
           Расписание
         </ion-item>
-        <ion-item menu-close href="#/app/browse">
+        <ion-item class="item item-icon-left" menu-close href="#/app/browse"><i class="icon ion-ios-toggle-outline"></i>
           Browse
         </ion-item>
-        <ion-item menu-close href="#/app/beacon">
+        <ion-item class="item item-icon-left" menu-close href="#/app/beacon"><i class="icon ion-ios-toggle-outline"></i>
           Test BeaconCtrl
         </ion-item>
-        <ion-item menu-close href="#/app/playlists">
+        <ion-item class="item item-icon-left" menu-close href="#/app/playlists"><i class="icon ion-ios-pie-outline"></i>
           Playlists
         </ion-item>
       </ion-list>
