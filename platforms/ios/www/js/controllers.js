@@ -133,6 +133,32 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
 
 }])
 
+.controller('PlanCtrl', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
+                           function getItems () {
+                           $http.get("http://iu3.bmstu.ru/WebApi/StudyPlanList")
+                           .success(function (data) {
+                                    $scope.items = data;
+                                    });
+                           }
+
+                           getItems();
+
+}])
+
+.controller('PlanDetailsCtrl', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
+                             console.log('plan details ctrl', $stateParams)
+                             var planId = $stateParams.planId;
+                             console.log('plan ID:', planId)
+                             function getItems () {
+                             $http.get("http://iu3.bmstu.ru/WebApi/StudyPlan/" + planId)
+                             .success(function (data) {
+                                      $scope.plandetail = data;
+                                      });
+                             }
+                             getItems ();
+
+}])
+
 .controller('MapController', function($scope, $cordovaGeolocation, $ionicLoading, $ionicPlatform) {
 
             $ionicPlatform.ready(function() {

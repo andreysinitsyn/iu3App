@@ -73,6 +73,17 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'ngCordova
       }
     })
 
+    .state('app.plan', {
+        url: '/plan',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/plan.html',
+            controller:  'PlanCtrl'
+          }
+        }
+      })
+
+
     .state('app.teachers', {
                url: '/teachers',
                views: {
@@ -103,6 +114,18 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'ngCordova
                'menuContent': {
                templateUrl: 'templates/schedule.html',
                controller: 'ScheduleCtrl'
+               }
+               }
+               })
+        
+        .state('app.plandetails', {
+               // params: { teacher: null, }
+               url: '/:planId',
+               params : { plan: null, },
+               views: {
+               'menuContent': {
+               templateUrl: 'templates/plandetails.html',
+               controller: 'PlanDetailsCtrl'
                }
                }
                })

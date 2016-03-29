@@ -1,0 +1,12 @@
+<ion-view view-title="Учебный план" >
+
+  <ion-content>
+      <ion-list>
+          <!--      kek    <ion-item ng-repeat="teacher in teachers" href="#/app/teachers/{{teacher.ID}}">-->
+          <ion-item collection-repeat="item in items" ui-sref="app.plandetails({planId: item.ID})">
+              {{item.Title}}
+          </ion-item>
+      </ion-list>
+  </ion-content>
+
+</ion-view>
