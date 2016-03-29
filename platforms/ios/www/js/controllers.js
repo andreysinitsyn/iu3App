@@ -156,6 +156,17 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
                                       });
                              }
                              getItems ();
+                             $scope.shownItem = null;
+                             $scope.toggleItem = function(item) {
+                             if ($scope.isItemShown(item)) {
+                               $scope.shownItem = null;
+                             } else {
+                               $scope.shownItem = item;
+                             }
+                           };
+                           $scope.isItemShown = function(item) {
+                             return $scope.shownItem === item;
+                           };
 
 }])
 
