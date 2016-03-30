@@ -2,20 +2,43 @@
 
   <ion-content style="padding:10px;">
 
-    <ion-list>
-
-        <ion-item class="item item-text-wrap">
-      <div ng-class="isItemShown(item) ? 'item-expand active' : 'item-expand inactive'">
-           <p>{{plandetail.Description}}</p>
+      <!-- <p><b>Описание:</b></p>
+      <div class="item-text-wrap" ng-class="isItemShown(item) ? 'item-expand active' : 'item-expand inactive'">
+           {{plandetail.Description}}
+         </br>
+         <strong>Количествое семестров: </strong>{{plandetail.NumberOfSemesters}}
          </div>
          <div ng-click="toggleItem(item)" class="item-expand-footer">
             <i ng-class="isItemShown(item) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i>
             {{ isItemShown(item) ? 'Less' : 'More' }}
           </div>
+        </br>
+      </br> -->
 
-        </ion-item>
+      <ion-list>
 
-   </ion-list>
+                <ion-item class="item-energized"
+                          ng-click="toggleGroup(group)"
+                          ng-class="{active: isGroupShown(group)}">
+                    <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+                  &nbsp;
+                  Описание
+                </ion-item>
+                <ion-item class="item-accordionitem item-text-wrap"
+                          ng-show="isGroupShown(group)" style="line-height:normal;">
+                  {{plandetail.Description}}
+                </ion-item>
+
+            </ion-list>
+          </br>
+      <ion-item ng-repeat="plan in plandetail.Sections" ui-sref="app.teachersDetails({teacherId: teacher.ID, teacher: teacher})">
+              {{ plan.Name}}
+          </ion-item>
+      </ion-list>
+    </br>
+  </br>
+
+
   </ion-content>
 
 </ion-view>

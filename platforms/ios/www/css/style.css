@@ -101,7 +101,8 @@
   }
 
   .item-expand.active {
-    max-height: 200px;
+    max-height: inherit;
+    /*height:auto;*/
     transition: max-height 0.3s ease-out;
   }
 
@@ -115,6 +116,22 @@
   .item-expand-footer i {
     margin-right: 10px;
   }
+
+
+  .list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+
 
 /*#Logo {
     display: block;

@@ -156,17 +156,30 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
                                       });
                              }
                              getItems ();
-                             $scope.shownItem = null;
-                             $scope.toggleItem = function(item) {
-                             if ($scope.isItemShown(item)) {
-                               $scope.shownItem = null;
-                             } else {
-                               $scope.shownItem = item;
-                             }
-                           };
-                           $scope.isItemShown = function(item) {
-                             return $scope.shownItem === item;
-                           };
+                            $scope.shownGroup  = null;
+                            $scope.toggleGroup = function(group) {
+
+                              if ($scope.isGroupShown(group)) {
+                                $scope.shownGroup = null;
+                              } else {
+                                $scope.shownGroup = group;
+                              }
+                            };
+                            $scope.isGroupShown = function(group) {
+                              return $scope.shownGroup === group;
+                            };
+
+                          //   $scope.shownItem = null;
+                          //   $scope.toggleItem = function(item) {
+                          //   if ($scope.isItemShown(item)) {
+                          //     $scope.shownItem = null;
+                          //   } else {
+                          //     $scope.shownItem = item;
+                          //   }
+                          // };
+                          // $scope.isItemShown = function(item) {
+                          //   return $scope.shownItem === item;
+                          // };
 
 }])
 
