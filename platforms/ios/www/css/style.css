@@ -37,14 +37,15 @@
   border:none;   /*Removes all borders*/
   border-top: 1px solid;   /*Top Border for each menu item*/
   border-bottom:1px solid;   /*Bottom border for each menu item*/
-  border-color: #ECECEC;   /*Sets colors for top and bottom border*/
+  border-color: rgb(87,104,121);   /*Sets colors for top and bottom border*/
   color: white;    /*Text color for each item*/
 }
+
 
 /*Changes the border for the last item*/
 .custom .item:last-child {
   /*border-top: none;*/
-  border-bottom: 1px solid #ECECEC;
+  border-bottom: 1px solid rgb(87,104,121);
 }
 
 .custom .item-complex .item-content, .dark .item-radio .item-content {
@@ -53,7 +54,8 @@
 
 .custom .item-content.activated{
     border-color: #ECECEC !important;
-    background-color: #34495E !important;
+    background-color: rgb(87,104,121) !important;
+
 }
 
 /*Just makes the type white*/
