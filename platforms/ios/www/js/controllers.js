@@ -255,8 +255,8 @@ app.beaconRegions =
 	{
 		id: 'page-feet',
 		uuid:'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0',
-		major: 0,
-		minor: 33331
+		major: 1,
+		minor: 1
 	}
 ]
 
@@ -347,25 +347,44 @@ app.didRangeBeaconsInRegion = function(pluginResult)
 	// The region identifier is the page id.
 	var pageId = pluginResult.region.identifier
 
-	console.log('ranged beacon: ' + pageId + ' ' + beacon.proximity)
+	// console.log('ranged beacon: ' + pageId + ' ' + beacon.proximity)
 
 	// If the beacon is close and represents a new page, then show the page.
-	if ((beacon.proximity == 'ProximityImmediate' || beacon.proximity == 'ProximityNear')
+	//if ((beacon.proximity == 'ProximityImmediate' || beacon.proximity == 'ProximityNear')
+  if (beacon.rssi > -56
 		&& app.currentPage != pageId)
 	{
+    console.log('******* Testlog Inside Level 1, pageId: ' + pageId + ' proximity: ' + beacon.proximity + ' rssi: ' + beacon.rssi + ' *******')
+		app.gotoPage(pageId)
+		return
+	} else if
+    (beacon.rssi < -56 && beacon.rssi > -71 && app.currentPage != pageId)
+	{
+    pageId = "page-shoulders";
+    console.log('******* Testlog Inside Level 2, pageId: ' + pageId + ' proximity: ' + beacon.proximity + ' rssi: ' + beacon.rssi + ' *******')
 		app.gotoPage(pageId)
 		return
 	}
 
 	// If the beacon represents the current page but is far away,
 	// then show the default page.
-	if (beacon.proximity == 'ProximityFar'
+	//if ((beacon.proximity == 'ProximityFar' || beacon.proximity == 'ProximityUnknown')
+  if (beacon.rssi < -71
 		&& app.currentPage == pageId)
 	{
+    console.log('******* Testlog Outside, pageId: ' + pageId + ' proximity: ' + beacon.proximity + ' rssi: ' + beacon.rssi + ' *******')
 		app.gotoPage('page-default')
+		return
+	}else if
+    (beacon.rssi < -56 && beacon.rssi > -71 && app.currentPage == pageId)
+	{
+    pageId = "page-shoulders";
+    console.log('******* Testlog Inside Level 2, pageId: ' + pageId + ' proximity: ' + beacon.proximity + ' rssi: ' + beacon.rssi + ' *******')
+		app.gotoPage(pageId)
 		return
 	}
 }
+
 
 app.gotoPage = function(pageId)
 {
