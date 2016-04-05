@@ -92,6 +92,57 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
 
 }])
 
+.controller('GetPublicationsJson', ['$scope', '$http', '$timeout', '$ionicFilterBar',  function($scope,$http,$timeout, $ionicFilterBar){
+
+        var filterBarInstance;
+
+        function getItems () {
+        $http.get("http://iu3.bmstu.ru/WebApi/Publications")
+        .success(function (data) {
+        $scope.publications = data;
+                 });
+        }
+
+        getItems();
+
+        $scope.showFilterBar = function () {
+        filterBarInstance = $ionicFilterBar.show({
+
+             items: $scope.publications,
+             filterProperties: ['Title', 'Aututhors'],
+               update: function (filteredItems, filterText) {
+               $scope.publications = filteredItems;
+                 if (filterText) {
+                 console.log('filteredItems');
+                 console.log(filteredItems);
+                 console.log(filterText);
+                 }
+               }
+             });
+
+        };
+
+        $scope.refreshItems = function () {
+        if (filterBarInstance) {
+        filterBarInstance();
+        filterBarInstance = null;
+        }
+
+        $timeout(function () {
+                 getItems();
+                 $scope.$broadcast('scroll.refreshComplete');
+               }, 1000);
+        };
+
+}])
+
+.controller('PublicationCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
+                  console.log('Publication ctrl', $stateParams)
+                  $scope.ID = $stateParams.publicationId;
+                  $scope.publication = $stateParams.publication;
+
+}])
+
 .controller('ScheduleCtrl', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
                              console.log('schedule ctrl', $stateParams)
                              var groupName = $stateParams.groupName;

@@ -82,17 +82,39 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'ngCordova
           }
         }
       })
+      .state('app.teachers', {
+                 url: '/teachers',
+                 views: {
+                 'menuContent': {
+                 templateUrl: 'templates/teachers.html',
+                 controller: 'GetTeachersJson'
+                 }
+                 }
+                 })
+
+      .state('app.publications', {
+                 url: '/publications',
+                 views: {
+                 'menuContent': {
+                 templateUrl: 'templates/publications.html',
+                 controller: 'GetPublicationsJson'
+                 }
+                 }
+                 })
+
+          .state('app.publicationDetails', {
+                 // params: { teacher: null, }
+                 url: '/:publicationId',
+                 params : { publication: null, },
+                 views: {
+                 'menuContent': {
+                 templateUrl: 'templates/publication.html',
+                 controller: 'PublicationCtrl'
+                 }
+                 }
+                 })
 
 
-    .state('app.teachers', {
-               url: '/teachers',
-               views: {
-               'menuContent': {
-               templateUrl: 'templates/teachers.html',
-               controller: 'GetTeachersJson'
-               }
-               }
-               })
 
         .state('app.teachersDetails', {
                // params: { teacher: null, }
@@ -106,6 +128,8 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'ngCordova
                }
                })
 
+
+
         .state('app.schedule', {
                // params: { teacher: null, }
                url: '/:groupName',
@@ -117,7 +141,7 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'ngCordova
                }
                }
                })
-        
+
         .state('app.plandetails', {
                // params: { teacher: null, }
                url: '/:planId',
