@@ -5,19 +5,21 @@
         </button>
     </ion-nav-buttons>
 
-    <ion-content>
+    <ion-content style="padding:10px">
 
         <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()">
         </ion-refresher>
 
         <ion-list>
             <!--      kek    <ion-item ng-repeat="teacher in teachers" href="#/app/teachers/{{teacher.ID}}">-->
-            <ion-item collection-repeat="publication in publications" ui-sref="app.publicationDetails({publicationId: publication.ID, publication: publication})">
-                {{ publication.Title}}
+            <ion-item class="item item-text-wrap" ng-repeat="publication in publications" ui-sref="app.publicationDetails({publicationId: publication.ID, publication: publication})">
+                <p style="font-size: 12px;"><b>{{publication.Title}}</b></p>
+                <p style="font-size: 8px;">{{publication.Aututhors}}</p>
 
             </ion-item>
         </ion-list>
-        <div ng-if="publications !== undefined && !publication.length" class="no-results">
+
+        <div ng-if="publications !== undefined && !publications.length" class="no-results">
             <p>No Results</p>
         </div>
 

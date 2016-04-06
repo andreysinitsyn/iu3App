@@ -92,14 +92,19 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
 
 }])
 
-.controller('GetPublicationsJson', ['$scope', '$http', '$timeout', '$ionicFilterBar',  function($scope,$http,$timeout, $ionicFilterBar){
+.controller('GetPublicationsJson', ['$scope', '$http', '$timeout', '$ionicFilterBar', '$ionicLoading', function($scope,$http,$timeout, $ionicFilterBar, $ionicLoading){
 
         var filterBarInstance;
+
+        $ionicLoading.show({
+          template: '<ion-spinner icon="spiral"></ion-spinner><br/>'
+         });
 
         function getItems () {
         $http.get("http://iu3.bmstu.ru/WebApi/Publications")
         .success(function (data) {
         $scope.publications = data;
+        $ionicLoading.hide();
                  });
         }
 
@@ -109,7 +114,7 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
         filterBarInstance = $ionicFilterBar.show({
 
              items: $scope.publications,
-             filterProperties: ['Title', 'Aututhors'],
+             //filterProperties: ['Title', 'Aututhors'],
                update: function (filteredItems, filterText) {
                $scope.publications = filteredItems;
                  if (filterText) {
