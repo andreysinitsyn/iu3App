@@ -22,7 +22,11 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'ngCordova
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicFilterBarConfigProvider, $ionicConfigProvider) {
+.config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider, $ionicFilterBarConfigProvider) {
+        
+  var backText = "Назад";
+  $ionicConfigProvider.backButton.previousTitleText(false).text(backText).icon('ion-ios-arrow-back');
+        
   $stateProvider
 
     .state('app', {
@@ -175,7 +179,6 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'ngCordova
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/teachers');
-        //название кнопки зависит от иконки, узнать почему.
-  $ionicConfigProvider.backButton.text('Назад').icon('ion-ios-arrow-back');
+
 
 });
