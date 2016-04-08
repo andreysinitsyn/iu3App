@@ -13,8 +13,8 @@
         <ion-list>
             <!--      kek    <ion-item ng-repeat="teacher in teachers" href="#/app/teachers/{{teacher.ID}}">-->
             <ion-item class="item item-text-wrap" ng-repeat="publication in publications" ui-sref="app.publicationDetails({publicationId: publication.ID, publication: publication})">
-                <p style="font-size: 12px;"><b>{{publication.Title}}</b></p>
-                <p style="font-size: 8px;">{{publication.Aututhors}}</p>
+                <p style="font-size: 14px;"><b>{{publication.Title}}</b></p>
+                <p style="font-size: 10px;">{{publication.Aututhors}}</p>
 
             </ion-item>
         </ion-list>

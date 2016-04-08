@@ -201,14 +201,20 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
 
 }])
 
-.controller('PlanDetailsCtrl', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
+.controller('PlanDetailsCtrl', ['$scope', '$http', '$stateParams', '$ionicLoading', function($scope, $http, $stateParams, $ionicLoading) {
                              console.log('plan details ctrl', $stateParams)
                              var planId = $stateParams.planId;
                              console.log('plan ID:', planId)
+
+                             $ionicLoading.show({
+                               template: '<ion-spinner icon="ios"></ion-spinner><br/>'
+                              });
+
                              function getItems () {
                              $http.get("http://iu3.bmstu.ru/WebApi/StudyPlan/" + planId)
                              .success(function (data) {
                                       $scope.plandetail = data;
+                                      $ionicLoading.hide();
                                       });
                              }
                              getItems ();

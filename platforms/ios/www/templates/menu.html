@@ -25,31 +25,31 @@
     </ion-header-bar>
     <ion-content class="custom has-header has-subheader">
       <ion-list>
-        <ion-item class="item item-icon-left" menu-close href="#/app/teachers"><i class="icon ion-ios-people-outline"></i>
+        <ion-item class="item item-icon-left" menu-close ui-sref="app.teachers"  ui-sref-active="current"  href="#/app/teachers"><i class="icon ion-ios-people-outline"></i>
             Преподаватели
         </ion-item>
-        <ion-item class="item item-icon-left" menu-close ng-click="login()"><i class="icon ion-ios-personadd-outline"></i>
+        <!-- <ion-item class="item item-icon-left" menu-close ng-click="login()"><i class="icon ion-ios-personadd-outline"></i>
           Login
-        </ion-item>
-        <ion-item class="item item-icon-left" menu-close href="#/app/publications"><i class="icon ion-ios-list-outline"></i>
+        </ion-item> -->
+        <ion-item class="item item-icon-left" menu-close ui-sref="app.publications"  ui-sref-active="current" href="#/app/publications"><i class="icon ion-ios-list-outline"></i>
             Публикации
         </ion-item>
-        <ion-item class="item item-icon-left" menu-close href="#/app/search"><i class="icon ion-ios-information-outline"></i>
+        <ion-item class="item item-icon-left" menu-close ui-sref="app.search"  ui-sref-active="current" href="#/app/search"><i class="icon ion-ios-information-outline"></i>
           Контакты
         </ion-item>
-        <ion-item class="item item-icon-left" menu-close href="#/app/groupslist"><i class="icon ion-ios-list-outline"></i>
+        <ion-item class="item item-icon-left" menu-close ui-sref="app.groupslist"  ui-sref-active="current" href="#/app/groupslist"><i class="icon ion-ios-list-outline"></i>
           Расписание
         </ion-item>
-        <ion-item class="item item-icon-left" menu-close href="#/app/plan"><i class="icon ion-ios-book-outline"></i>
+        <ion-item class="item item-icon-left" menu-close ui-sref="app.plan"  ui-sref-active="current" href="#/app/plan"><i class="icon ion-ios-book-outline"></i>
           Учебный план
         </ion-item>
-        <ion-item class="item item-icon-left" menu-close href="#/app/browse"><i class="icon ion-ios-toggle-outline"></i>
-          Browse
+        <ion-item class="item item-icon-left" menu-close ui-sref="app.browse"  ui-sref-active="current" href="#/app/browse"><i class="icon ion-ios-toggle-outline"></i>
+          iBeacon
         </ion-item>
-        <ion-item class="item item-icon-left" menu-close href="#/app/beacon"><i class="icon ion-ios-toggle-outline"></i>
+        <ion-item class="item item-icon-left" menu-close menu-close ui-sref="app.beacon"  ui-sref-active="current" href="#/app/beacon"><i class="icon ion-ios-toggle-outline"></i>
           Test BeaconCtrl
         </ion-item>
-        <ion-item class="item item-icon-left" menu-close href="#/app/playlists"><i class="icon ion-ios-pie-outline"></i>
+        <ion-item class="item item-icon-left" menu-close menu-close ui-sref="app.playlists"  ui-sref-active="current" href="#/app/playlists"><i class="icon ion-ios-pie-outline"></i>
           Playlists
         </ion-item>
       </ion-list>
