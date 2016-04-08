@@ -8,9 +8,7 @@
 #map {
     width: 95%;
     height: 40%;
-    border-style: solid;
-    border-width: 0.5px;
-    border-color: #EEEEEE;
+    border: 1px solid #BFBFBF;
     background-color: #ecf0f1;
     margin-top: 10px;
     margin-left: 10px;
