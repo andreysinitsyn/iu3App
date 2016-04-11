@@ -90,6 +90,52 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
                   $scope.ID = $stateParams.teacherId;
                   $scope.teacher = $stateParams.teacher;
 
+                  $scope.teacherCard = '<div class="list card">';
+                  // console.log('Degree:', $scope.teacher.Degree)
+                  $scope.teacherCard = $scope.teacherCard + '<a href="#" class="item item-icon-left"> <i class="icon icon ion-person"></i>'+ $scope.teacher.FIO +'</a>';
+                  if ($scope.teacher.Degree != null){
+                    $scope.teacherCard = $scope.teacherCard + '<a href="#" class="item item-icon-left"> <i class="icon ion-university"></i>'+ $scope.teacher.Degree +'</a>';
+                  }
+                  if ($scope.teacher.Position != null){
+                    $scope.teacherCard = $scope.teacherCard + '<a href="#" class="item item-icon-left"> <i class="icon ion-briefcase"></i>'+ $scope.teacher.Position +'</a>';
+                  }
+                  if ($scope.teacher.EMail != null){
+                    $scope.teacherCard = $scope.teacherCard + '<a href="#" class="item item-icon-left"> <i class="icon ion-at"></i>'+ $scope.teacher.EMail +'</a>';
+                  }
+                  if ($scope.teacher.Phone != null){
+                    $scope.teacherCard = $scope.teacherCard + '<a href="#" class="item item-icon-left"> <i class="icon ion-ios-telephone"></i>'+ $scope.teacher.Phone +'</a>';
+                  }
+                  if ($scope.teacher.Fax != null){
+                    $scope.teacherCard = $scope.teacherCard + '<a href="#" class="item item-icon-left"> <i class="icon ion-printer" style="color: blue;"></i>'+ $scope.teacher.Fax +'</a>';
+                  }
+                  if ($scope.teacher.Twitter != null){
+                    $scope.teacherCard = $scope.teacherCard + '<a href="#" class="item item-icon-left"> <i class="icon ion-social-twitter" style="color: blue;"></i>'+ $scope.teacher.Twitter +'</a>';
+                  }
+                  if ($scope.teacher.Facebook != null){
+                    $scope.teacherCard = $scope.teacherCard + '<a href="#" class="item item-icon-left"> <i class="icon ion-social-facebook" style="color: blue;"></i>'+ $scope.teacher.Facebook +'</a>';
+                  }
+                  if ($scope.teacher.LinkedIn != null){
+                    $scope.teacherCard = $scope.teacherCard + '<a href="#" class="item item-icon-left"> <i class="icon ion-social-linkedin" style="color: blue;"></i>'+ $scope.teacher.LinkedIn +'</a>';
+                  }
+                  if ($scope.teacher.Web != null){
+                    $scope.teacherCard = $scope.teacherCard + '<a href="#" class="item item-icon-left"> <i class="icon ion-earth" style="color: blue;"></i>'+ $scope.teacher.Web +'</a>';
+                  }
+
+                  $scope.teacherCard = $scope.teacherCard + '</div>';
+
+                  if ($scope.teacher.CV != null){
+                    $scope.teacherCard = $scope.teacherCard + '<div class="list card">';
+                    $scope.teacherCard = $scope.teacherCard + '<a href="#" class="item item-text-wrap">'+ $scope.teacher.CV +'</a>';
+                    $scope.teacherCard = $scope.teacherCard + '</div>';
+                  }
+
+                  $scope.teacherCard = $scope.teacherCard + '</br>';
+                  $scope.teacherCard = $scope.teacherCard + '</br>';
+
+
+
+
+
 }])
 
 .controller('GetPublicationsJson', ['$scope', '$http', '$timeout', '$ionicFilterBar', '$ionicLoading', function($scope,$http,$timeout, $ionicFilterBar, $ionicLoading){
