@@ -1,10 +1,12 @@
 <ion-view view-title="Публикация">
     <ion-content>
-    <span>{{publication.Title}}</span>
-    <span>{{publication.Date}}</span>
-    <span>{{publication.Aututhors}}</span>
-    <span>{{publication.Publisher}}</span>
-    <span>{{ID}}</span>
+      <div class="list card">
+        <a href="#" class="item item-text-wrap item-icon-left"><i class="icon ion-ios-list"></i>{{publication.Title}}</a>
+        <a href="#" class="item item-text-wrap item-icon-left"><i class="icon ion-ios-calendar"></i>{{publication.Date}}</a>
+        <a href="#" class="item item-text-wrap item-icon-left"><i class="icon ion-ios-people"></i>{{publication.Aututhors}}</a>
+        <a href="#" class="item item-text-wrap item-icon-left"><i class="icon ion-ios-upload"></i>{{publication.Publisher}}</a>
+      </div>
+      <div ng-bind-html="publicationCard"></div>
 
     </ion-content>
 </ion-view>

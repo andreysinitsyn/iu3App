@@ -5,16 +5,17 @@
         </button>
     </ion-nav-buttons>
 
-    <ion-content style="padding:10px">
+    <ion-content>
 
         <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()">
         </ion-refresher>
 
         <ion-list>
             <!--      kek    <ion-item ng-repeat="teacher in teachers" href="#/app/teachers/{{teacher.ID}}">-->
-            <ion-item class="item item-text-wrap" ng-repeat="publication in publications" ui-sref="app.publicationDetails({publicationId: publication.ID, publication: publication})">
+            <ion-item class="item item-text-wrap item-icon-right" ng-repeat="publication in publications" ui-sref="app.publicationDetails({publicationId: publication.ID, publication: publication})">
                 <p style="font-size: 14px;"><b>{{publication.Title}}</b></p>
                 <p style="font-size: 10px;">{{publication.Aututhors}}</p>
+                <i class="icon ion-chevron-right icon-accessory" style="color:#666;"></i>
 
             </ion-item>
         </ion-list>

@@ -191,6 +191,10 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
                   console.log('Publication ctrl', $stateParams)
                   $scope.ID = $stateParams.publicationId;
                   $scope.publication = $stateParams.publication;
+                  
+                  if ($scope.publication.Url != null){
+                    $scope.publicationCard = '<a class="button button-block button-energized" style="width:95%; margin-left:10px;" ui-sref="'+ $scope.publication.Url +'">Detail View</a>';
+                  }
 
 }])
 
