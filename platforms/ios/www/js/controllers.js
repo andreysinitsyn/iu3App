@@ -187,16 +187,55 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
 
 }])
 
-.controller('PublicationCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
+.controller('PublicationCtrl', ['$scope', '$stateParams', '$cordovaInAppBrowser', function($scope, $stateParams, $cordovaInAppBrowser) {
                   console.log('Publication ctrl', $stateParams)
                   $scope.ID = $stateParams.publicationId;
                   $scope.publication = $stateParams.publication;
-                  
-                  if ($scope.publication.Url != null){
-                    $scope.publicationCard = '<a class="button button-block button-energized" style="width:95%; margin-left:10px;" ui-sref="'+ $scope.publication.Url +'">Detail View</a>';
-                  }
+
+                  var options = {
+                    location: 'yes',
+                     clearcache: 'yes',
+                     toolbar: 'yes',
+                     closebuttoncaption: 'DONE?'
+                  };
+
+                  var url = $stateParams.publication.Url;
+
+                  $scope.openInAppBrowser = function()
+                  {
+                   // Open in app browser
+                   $cordovaInAppBrowser.open(url,'_system', options)
+                                 .then(function(event) {
+                                    // success
+                                  })
+                                  .catch(function(event) {
+                                    // error
+                                  })
+                  };
+
+                  // var options = {
+                  //   location: 'yes',
+                  //   clearcache: 'yes'
+                  //   // toolbar: 'no'
+                  // };
+                  //
+                  //
+                  //
+                  // if ($scope.publication.Url != null){
+                  //   // $scope.publicationCard = '<a class="button button-block button-energized" ng-click = "openBrowser()" style="width:95%; margin-left:10px;">Detail View</a>';
+                  //   // $scope.value='mk';
+                  //   // var html='<div  ng-click="selectedValue(value)">Value</div>' ;
+                  //      var html = '<a class="button button-block button-energized" ng-click = "openBrowser()" style="width:95%; margin-left:10px;">Detail View</a>';
+                  //      angular.element(document.getElementById('publicationCard')).append($compile(html)($scope))
+                  //
+                  //      $scope.openBrowser = function() {
+                  //        console.log('btn has been pushed')
+                  //         $cordovaInAppBrowser.open($scope.publication.Url, '_blank', options)
+                  //      };
+                  // }
 
 }])
+
 
 .controller('ScheduleCtrl', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
                              console.log('schedule ctrl', $stateParams)
