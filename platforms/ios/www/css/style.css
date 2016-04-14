@@ -157,7 +157,11 @@
     background-color:#ECF0F1;
 }
 
+#bmstu {
+  width: 100%;
+  height: 45%;
 
+}
 
 /*#Logo {
     display: block;

@@ -41,14 +41,19 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
   };
 })
 
-.controller('GetTeachersJson', ['$scope', '$http', '$timeout', '$ionicFilterBar',  function($scope,$http,$timeout, $ionicFilterBar){
+.controller('GetTeachersJson', ['$scope', '$http', '$timeout', '$ionicFilterBar', '$ionicLoading',  function($scope,$http,$timeout, $ionicFilterBar, $ionicLoading){
 
         var filterBarInstance;
+
+        $ionicLoading.show({
+          template: '<ion-spinner icon="circles"></ion-spinner><br/>'
+         });
 
         function getItems () {
         $http.get("http://iu3.bmstu.ru/WebApi/People")
         .success(function (data) {
         $scope.teachers = data;
+        $ionicLoading.hide();
                  });
         }
 
@@ -143,7 +148,7 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
         var filterBarInstance;
 
         $ionicLoading.show({
-          template: '<ion-spinner icon="spiral"></ion-spinner><br/>'
+          template: '<ion-spinner icon="circles"></ion-spinner><br/>'
          });
 
         function getItems () {

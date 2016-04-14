@@ -23,10 +23,10 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'ngCordova
 })
 
 .config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider, $ionicFilterBarConfigProvider) {
-        
+
   var backText = "Назад";
   $ionicConfigProvider.backButton.previousTitleText(false).text(backText).icon('ion-ios-arrow-back');
-        
+
   $stateProvider
 
     .state('app', {
@@ -42,6 +42,15 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'ngCordova
       'menuContent': {
         templateUrl: 'templates/search.html',
          controller: 'MapController'
+      }
+    }
+  })
+
+  .state('app.main', {
+    url: '/main',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/main.html'
       }
     }
   })
@@ -178,7 +187,7 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'ngCordova
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/teachers');
+  $urlRouterProvider.otherwise('/app/main');
 
 
 });
