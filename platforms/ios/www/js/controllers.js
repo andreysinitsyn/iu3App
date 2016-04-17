@@ -413,6 +413,18 @@ app.beaconRegions =
 		uuid:'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0',
 		major: 1,
 		minor: 1
+	},
+  {
+		id: 'page-shoulders',
+		uuid:'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0',
+		major: 2,
+		minor: 2
+	},
+  {
+		id: 'page-face',
+		uuid:'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0',
+		major: 0,
+		minor: 33331
 	}
 ]
 
@@ -490,7 +502,8 @@ app.startScanForBeacons = function()
 // Display pages depending of which beacon is close.
 app.didRangeBeaconsInRegion = function(pluginResult)
 {
-	// There must be a beacon within range.
+  var timeNow = Date.now();
+  // There must be a beacon within range.
 	if (0 == pluginResult.beacons.length)
 	{
 		return
@@ -507,46 +520,82 @@ app.didRangeBeaconsInRegion = function(pluginResult)
 
 	// If the beacon is close and represents a new page, then show the page.
 	//if ((beacon.proximity == 'ProximityImmediate' || beacon.proximity == 'ProximityNear')
-  if (beacon.rssi > -56
-		&& app.currentPage != pageId)
-	{
-    console.log('******* Testlog Inside Level 1, pageId: ' + pageId + ' proximity: ' + beacon.proximity + ' rssi: ' + beacon.rssi + ' *******')
-		app.gotoPage(pageId)
-		return
-	} else if
-    (beacon.rssi < -56 && beacon.rssi > -71 && app.currentPage != pageId)
-	{
-    pageId = "page-shoulders";
-    console.log('******* Testlog Inside Level 2, pageId: ' + pageId + ' proximity: ' + beacon.proximity + ' rssi: ' + beacon.rssi + ' *******')
-		app.gotoPage(pageId)
-		return
-	}
+  // if ((beacon.proximity == 'ProximityImmediate' || beacon.proximity == 'ProximityNear')
+	// 	&& app.currentPage != pageId)
+	// {
+  //   console.log('******* Testlog Inside Level 1, pageId: ' + pageId + ' proximity: ' + beacon.proximity + ' rssi: ' + beacon.rssi + ' *******')
+	// 	app.gotoPage(pageId)
+	// 	return
+	// }
+  // else if
+  //   (beacon.rssi < -56 && beacon.rssi > -71 && app.currentPage != pageId)
+	// {
+  //   pageId = "page-shoulders";
+  //   console.log('******* Testlog Inside Level 2, pageId: ' + pageId + ' proximity: ' + beacon.proximity + ' rssi: ' + beacon.rssi + ' *******')
+	// 	app.gotoPage(pageId)
+	// 	return
+	// }
 
 	// If the beacon represents the current page but is far away,
 	// then show the default page.
 	//if ((beacon.proximity == 'ProximityFar' || beacon.proximity == 'ProximityUnknown')
-  if (beacon.rssi < -71
-		&& app.currentPage == pageId)
-	{
-    console.log('******* Testlog Outside, pageId: ' + pageId + ' proximity: ' + beacon.proximity + ' rssi: ' + beacon.rssi + ' *******')
-		app.gotoPage('page-default')
-		return
-	}else if
-    (beacon.rssi < -56 && beacon.rssi > -71 && app.currentPage == pageId)
-	{
-    pageId = "page-shoulders";
-    console.log('******* Testlog Inside Level 2, pageId: ' + pageId + ' proximity: ' + beacon.proximity + ' rssi: ' + beacon.rssi + ' *******')
-		app.gotoPage(pageId)
-		return
-	}
+  // if ((beacon.proximity == 'ProximityFar' || beacon.proximity == 'ProximityUnknown')
+	// 	&& app.currentPage == pageId)
+	// {
+  //   console.log('******* Testlog Outside, pageId: ' + pageId + ' proximity: ' + beacon.proximity + ' rssi: ' + beacon.rssi + ' *******')
+	// 	app.gotoPage('page-default')
+	// 	return
+	// }
+
+  beacon.timeStamp = Date.now() + 100000;
+  var time = beacon.timeStamp + 100000;
+  // beacon.timeStamp.setSeconds(beacon.timeStamp.getSeconds() + 5);
+  console.log('----*******----> timeNow: ' + timeNow)
+  console.log('----*******----> beacon.timeStamp + 5sec: ' + time)
+
+  //if (beacon.timeStamp > timeNow) {
+  var delay=3000; //3 second
+
+  setTimeout(function() {
+        if ((beacon.proximity == 'ProximityImmediate' || beacon.proximity == 'ProximityNear')
+      		&& app.currentPage == 'page-default')
+      	{
+          console.log('----*******----> timeNow 2: ' + timeNow)
+          console.log('----*******----> beacon.timeStamp 2: ' + beacon.timeStamp)
+      		app.gotoPage(pageId)
+      		return
+      	}
+
+      	// If the beacon represents the current page but is far away,
+      	// then show the default page.
+      	if ((beacon.proximity == 'ProximityFar' || beacon.proximity == 'ProximityUnknown')
+      		&& app.currentPage == pageId)
+      	{
+      		app.gotoPage('page-default')
+      		return
+      	}
+
+  }, delay)
+  // else if
+  //   (beacon.rssi < -56 && beacon.rssi > -71 && app.currentPage == pageId)
+	// {
+  //   pageId = "page-shoulders";
+  //   console.log('******* Testlog Inside Level 2, pageId: ' + pageId + ' proximity: ' + beacon.proximity + ' rssi: ' + beacon.rssi + ' *******')
+  //   console.log('----*******----> Hide current page: ' + app.currentPage)
+  //   app.gotoPage(pageId)
+	// 	return
+	// }
 }
 
 
 app.gotoPage = function(pageId)
 {
+  console.log('----*******----> Hide current page: ' + app.currentPage)
 	app.hidePage(app.currentPage)
+  console.log('----*******----> Open page: ' + pageId)
 	app.showPage(pageId)
 	app.currentPage = pageId
+  console.log('----*******----> New current page: ' + app.currentPage)
 }
 
 app.showPage = function(pageId)
