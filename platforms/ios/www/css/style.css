@@ -33,8 +33,10 @@
 .custom .item {
   background-color: transparent;
   border:none;   /*Removes all borders*/
-  border-top: 1px solid;   /*Top Border for each menu item*/
-  border-bottom:1px solid;   /*Bottom border for each menu item*/
+  /*border-top: 1px solid;   /*Top Border for each menu item*/*/
+  /*border-bottom:1px solid;   /*Bottom border for each menu item*/*/
+  margin-right: 10px;
+  margin-left: 10px;
   border-color: rgb(87,104,121);   /*Sets colors for top and bottom border*/
   color: white;    /*Text color for each item*/
   /*margin-left: 20px*/
@@ -42,10 +44,7 @@
 
 
 /*Changes the border for the last item*/
-.custom .item:last-child {
-  /*border-top: none;*/
-  border-bottom: 1px solid rgb(87,104,121);
-}
+
 
 .custom .item-complex .item-content, .dark .item-radio .item-content {
   background-color: transparent;
@@ -56,6 +55,8 @@
     background-color: rgb(87,104,121) !important;
     position: relative;
     /*border-left:  5px solid;*/
+    border-radius: 5px;
+    margin-right: 10px;
     -webkit-background-clip:padding;
     -moz-background-clip:padding;
     background-clip:padding-box;
@@ -68,12 +69,57 @@
     /*border-color: #ECECEC !important;*/
     background-color: rgb(87,104,121) !important;
     position: relative;
-    width: 100%;
+    border-radius: 5px;
+    margin-right: 10px;
     height: 100%;
+}
 
-
+.custom .item-content.activated:last-child{
+    border-color: #ECECEC !important;
+    background-color: rgb(87,104,121) !important;
+    position: relative;
     /*border-left:  5px solid;*/
+    border-radius: 5px;
+    -webkit-background-clip:padding;
+    -moz-background-clip:padding;
+    background-clip:padding-box;
+    
+}
 
+
+
+.custom .current:last-child{
+    /*border-color: #ECECEC !important;*/
+    background-color: rgb(87,104,121) !important;
+    position: relative;
+    border-radius: 5px;
+    margin-right: 10px;
+    border:none;
+    height: 100%;
+}
+
+.custom .item-content.activated:first-child{
+    border-color: #ECECEC !important;
+    background-color: rgb(87,104,121) !important;
+    position: relative;
+    /*border-left:  5px solid;*/
+    border-radius: 5px;
+    margin-right: 10px;
+    -webkit-background-clip:padding;
+    -moz-background-clip:padding;
+    background-clip:padding-box;
+    
+}
+
+
+
+.custom .current:first-child{
+    /*border-color: #ECECEC !important;*/
+    background-color: rgb(87,104,121) !important;
+    position: relative;
+    border-radius: 5px;
+    margin-right: 10px;
+    height: 100%;
 }
 
 
