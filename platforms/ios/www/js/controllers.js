@@ -343,9 +343,9 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
 
             $ionicPlatform.ready(function() {
 
-                 $ionicLoading.show({
-                   template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
-                  });
+                //  $ionicLoading.show({
+                //    template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
+                //   });
 
                  var posOptions = {
                  enableHighAccuracy: true,
@@ -353,24 +353,31 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
                  maximumAge: 0
                  };
                  $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-                                     var lat  = position.coords.latitude;
-                                     var long = position.coords.longitude;
+
+                                     var lat  = 55.766099;
+                                     var long = 37.685613;
 
                                      var myLatlng = new google.maps.LatLng(lat, long);
 
                                      var mapOptions = {
                                      center: myLatlng,
-                                     zoom: 16,
+                                     zoom: 15,
                                      mapTypeId: google.maps.MapTypeId.ROADMAP
                                      };
 
                                      var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+                                     var marker = new google.maps.Marker({
+                                      position: myLatlng,
+                                      map: map,
+                                      title: 'Hello World!'
+                                    });
+
                                      $scope.map = map;
                                      $ionicLoading.hide();
 
                                      }, function(err) {
-                                     $ionicLoading.hide();
+                                    //  $ionicLoading.hide();
                                      console.log(err);
                                      });
           });

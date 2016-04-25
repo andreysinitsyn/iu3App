@@ -6,13 +6,12 @@
 }
 
 #map {
-    width: 95%;
+    /*width: 95%;*/
     height: 40%;
-    border: 1px solid #BFBFBF;
     background-color: #ecf0f1;
-    margin-top: 10px;
+    /*margin-top: 10px;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 10px;*/
 
 }
 
@@ -83,7 +82,7 @@
     -webkit-background-clip:padding;
     -moz-background-clip:padding;
     background-clip:padding-box;
-    
+
 }
 
 
@@ -108,7 +107,7 @@
     -webkit-background-clip:padding;
     -moz-background-clip:padding;
     background-clip:padding-box;
-    
+
 }
 
 
