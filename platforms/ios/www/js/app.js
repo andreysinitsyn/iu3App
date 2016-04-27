@@ -155,17 +155,38 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'ngCordova
                }
                })
 
-        .state('app.plandetails', {
-               // params: { teacher: null, }
-               url: '/:planId',
-               params : { plan: null, },
-               views: {
-               'menuContent': {
-               templateUrl: 'templates/plandetails.html',
-               controller: 'PlanDetailsCtrl'
-               }
-               }
-               })
+    .state('app.plandetails', {
+
+       url: '/:planId',
+       params : { plan: null, },
+       views: {
+           'menuContent': {
+           templateUrl: 'templates/plandetails.html',
+           controller: 'PlanDetailsCtrl'
+           }
+        }
+    })
+     .state('app.plansection', {
+        url: '/:sectionId',
+        params : { section: null, },
+        views: {
+            'menuContent': {
+            templateUrl: 'templates/plansection.html',
+            controller: 'PlanSectionCtrl'
+            }
+        }
+    })
+
+    .state('app.courseDetails', {
+       url: '/:courseId',
+       params : { course: null, },
+       views: {
+           'menuContent': {
+           templateUrl: 'templates/plancourse.html',
+           controller: 'courseDetailsCtrl'
+           }
+       }
+   })
 
     .state('app.playlists', {
       url: '/playlists',

@@ -1,0 +1,39 @@
+<ion-view view-title="section" >
+
+  <ion-content >
+        <!-- <ion-list>
+          <ion-item ng-repeat="subsec in section.SubSections">
+                    {{ subsec.Name}}
+                </ion-item>
+        </ion-list> -->
+<!-- <div ng-bind-html="sectionCard"></div> -->
+
+
+
+      <ion-list>
+        <div ng-repeat="subsec in section.SubSections">
+          <ion-item class="item-stable"
+                    ng-click="toggleGroup(subsec)"
+                    ng-class="{active: isGroupShown(subsec)}">
+              <i class="icon" ng-class="isGroupShown(subsec) ? 'ion-minus' : 'ion-plus'"></i>
+            &nbsp;
+             {{subsec.Name}}
+          </ion-item>
+          <ion-item class="item-accordion"
+                    ng-repeat="item in subsec.Courses"
+                    ng-show="isGroupShown(subsec)" ui-sref="app.courseDetails({courseId: item.ID})">
+            {{item.Name}}
+          </ion-item>
+        </div>
+      </ion-list>
+
+      <ion-list>
+        <ion-item class="item item-icon-right" collection-repeat="course in section.Courses" ui-sref="app.courseDetails({courseId: course.ID})">
+              {{course.Name}}
+        </ion-item>
+      </ion-list>
+
+
+  </ion-content>
+
+</ion-view>

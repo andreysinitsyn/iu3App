@@ -1,0 +1,28 @@
+<ion-view view-title={{course.Name}} >
+
+  <ion-content >
+
+
+    <div ng-bind-html="courseCard"></div>
+
+
+  </ion-content>
+  <div class="bar bar-footer bar-energized">
+      <button class="button item-icon-right button-clear pull-center" style="width:100%;" ng-click="modal.show()">Описание
+        <i class="icon ion-ios-arrow-up icon-accessory" style="color:white;"></i>
+      </button>
+  </div>
+
+  <script id="coursedecription.html" type="text/ng-template" ng-controller="PlanDetailsCtrl">
+       <ion-modal-view >
+         <ion-header-bar class="bar bar-header bar-energized">
+           <h1 class="title">Описание</h1>
+           <button class="button button-clear button-primary" ng-click="modal.hide()">Закрыть</button>
+         </ion-header-bar>
+         <ion-content class="padding">
+          {{course.Description}}
+         </ion-content>
+       </ion-modal-view>
+     </script>
+
+</ion-view>

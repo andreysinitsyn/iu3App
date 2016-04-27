@@ -295,7 +295,7 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
 
 }])
 
-.controller('PlanDetailsCtrl', ['$scope', '$http', '$stateParams', '$ionicLoading', function($scope, $http, $stateParams, $ionicLoading) {
+.controller('PlanDetailsCtrl', ['$scope', '$http', '$stateParams', '$ionicLoading', '$ionicModal', function($scope, $http, $stateParams, $ionicLoading, $ionicModal) {
                              console.log('plan details ctrl', $stateParams)
                              var planId = $stateParams.planId;
                              console.log('plan ID:', planId)
@@ -325,6 +325,33 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
                               return $scope.shownGroup === group;
                             };
 
+                            //var template = '<ion-popover-view><ion-header-bar> <h1 class="title">My Popover Title</h1> </ion-header-bar> <ion-content> Hello! </ion-content></ion-popover-view>';
+
+                            $ionicModal.fromTemplateUrl('plandecription.html', {
+                            scope: $scope,
+                            animation: 'slide-in-up'
+                          }).then(function(modal) {
+                            $scope.modal = modal;
+                          });
+                          $scope.openModal = function() {
+                            $scope.modal.show();
+                          };
+                          $scope.closeModal = function() {
+                            $scope.modal.hide();
+                          };
+                          // Cleanup the modal when we're done with it!
+                          $scope.$on('$destroy', function() {
+                            $scope.modal.remove();
+                          });
+                          // Execute action on hide modal
+                          $scope.$on('modal.hidden', function() {
+                            // Execute action
+                          });
+                          // Execute action on remove modal
+                          $scope.$on('modal.removed', function() {
+                            // Execute action
+                          });
+
                           //   $scope.shownItem = null;
                           //   $scope.toggleItem = function(item) {
                           //   if ($scope.isItemShown(item)) {
@@ -336,6 +363,114 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
                           // $scope.isItemShown = function(item) {
                           //   return $scope.shownItem === item;
                           // };
+
+}])
+
+.controller('PlanSectionCtrl', ['$scope', '$http', '$stateParams', '$ionicLoading', function($scope, $http, $stateParams, $ionicLoading) {
+                            console.log('section ctrl', $stateParams)
+                            $scope.ID = $stateParams.sectionId;
+                            $scope.section = $stateParams.section;
+                            // console.log('section: ', $scope.section)
+                            // console.log('scope.section.SubSections: ', $scope.section.SubSections)
+                            // console.log('$scope.section.Courses.Name: ', $scope.section.Courses.Name)
+                            // console.log('$stateParams.section): ', $stateParams.section)
+                            // console.log('$stateParams.section.SubSections): ', $stateParams.section.SubSections)
+                            // console.log('$stateParams.section.Courses.Name): ', $stateParams.section.Courses.Name)
+
+                            if ($stateParams.section.SubSections.length == 0){
+                                $scope.sectionCard = '<ion-list>';
+                                console.log('list opened ')
+                            for (var i in $stateParams.section.Courses) {
+                                console.log('i: ', i)
+                                $scope.sectionCard = $scope.sectionCard + '<ion-item  ui-sref="app.courseDetails({courseId: '+$stateParams.section.Courses[i].ID+'})" class="item item-icon-left">'+ $stateParams.section.Courses[i].Name +'</ion-item >';
+                              }
+                              $scope.sectionCard = $scope.sectionCard +   '</ion-list>';
+                              console.log('list closed ')
+                            }
+
+
+                            $scope.shownGroup  = null;
+                            $scope.toggleGroup = function(group) {
+
+                              if ($scope.isGroupShown(group)) {
+                                $scope.shownGroup = null;
+                              } else {
+                                $scope.shownGroup = group;
+                              }
+                            };
+                            $scope.isGroupShown = function(group) {
+                              return $scope.shownGroup === group;
+                            };
+
+
+}])
+
+.controller('courseDetailsCtrl', ['$scope', '$http', '$stateParams', '$ionicLoading', '$ionicModal', function($scope, $http, $stateParams, $ionicLoading, $ionicModal) {
+                             console.log('course details ctrl', $stateParams)
+                             var courseId = $stateParams.courseId;
+                             console.log('course ID:', courseId)
+
+                             $ionicLoading.show({
+                               template: '<ion-spinner icon="ios"></ion-spinner><br/>'
+                              });
+
+                             function getItems () {
+                             $http.get("https://iu3.bmstu.ru/WebApi/Course/" + courseId)
+                             .success(function (data) {
+                                      $scope.course = data;
+                                      $ionicLoading.hide();
+                                      //console.log('$scope.course.Name:', $scope.course.Name)
+                                      $scope.courseCard = '<div class="list card">';
+                                      // console.log('Degree:', $scope.teacher.Degree)
+                                      if ($scope.course.Name != null){
+                                        $scope.courseCard = $scope.courseCard + '<a href="#" class="item item-icon-left">'+ $scope.course.Name +' ('+$scope.course.Abbreviation+')</a>';
+                                      }
+                                      if ($scope.course.DepartmentName != null){
+                                        $scope.courseCard = $scope.courseCard + '<a href="#" class="item item-icon-left">'+ $scope.course.DepartmentName +' ('+$scope.course.DepartmentShortName+')</a>';
+                                      }
+                                      if ($scope.course.DepartmentUrl != null){
+                                        $scope.courseCard = $scope.courseCard + '<a href="#" class="item item-icon-left"> <i class="icon ion-earth"></i>'+ $scope.course.DepartmentUrl +'</a>';
+                                      }
+                                      if ($scope.courseCard.PeopleNames != null){
+                                        $scope.courseCard = $scope.courseCard + '<a href="#" class="item item-icon-left"> <i class="icon ion-person-stalker"></i>'+ $scope.course.PeopleNames +'</a>';
+                                      }
+
+                                      $scope.teacherCard = $scope.teacherCard + '</div>';
+
+
+                                        if ($scope.course.Description == null){
+                                          $scope.course.Description = "Нет описания";
+                                          console.log('$scope.course.Description:', $scope.course.Description)
+                                        }
+
+                                      });
+                             }
+                             getItems ();
+
+                             $ionicModal.fromTemplateUrl('coursedecription.html', {
+                             scope: $scope,
+                             animation: 'slide-in-up'
+                           }).then(function(modal) {
+                             $scope.modal = modal;
+                           });
+                           $scope.openModal = function() {
+                             $scope.modal.show();
+                           };
+                           $scope.closeModal = function() {
+                             $scope.modal.hide();
+                           };
+                           // Cleanup the modal when we're done with it!
+                           $scope.$on('$destroy', function() {
+                             $scope.modal.remove();
+                           });
+                           // Execute action on hide modal
+                           $scope.$on('modal.hidden', function() {
+                             // Execute action
+                           });
+                           // Execute action on remove modal
+                           $scope.$on('modal.removed', function() {
+                             // Execute action
+                           });
 
 }])
 
@@ -370,7 +505,7 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
                                      var marker = new google.maps.Marker({
                                       position: myLatlng,
                                       map: map,
-                                      title: 'Hello World!'
+                                      title: 'МГТУ им. Н.Э.Баумана'
                                     });
 
                                      $scope.map = map;
