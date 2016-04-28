@@ -50,7 +50,8 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'ngCordova
     url: '/main',
     views: {
       'menuContent': {
-        templateUrl: 'templates/main.html'
+        templateUrl: 'templates/main.html',
+        controller: 'mainpageCtrl'
       }
     }
   })
@@ -95,65 +96,63 @@ angular.module('iu3App', ['ionic', 'iu3App.controllers', 'ngCordova', 'ngCordova
           }
         }
       })
-      .state('app.teachers', {
-                 url: '/teachers',
-                 views: {
-                 'menuContent': {
-                 templateUrl: 'templates/teachers.html',
-                 controller: 'GetTeachersJson'
-                 }
-                 }
-                 })
+    .state('app.teachers', {
+       url: '/teachers',
+       views: {
+         'menuContent': {
+           templateUrl: 'templates/teachers.html',
+           controller: 'GetTeachersJson'
+         }
+       }
+    })
 
-      .state('app.publications', {
-                 url: '/publications',
-                 views: {
-                 'menuContent': {
-                 templateUrl: 'templates/publications.html',
-                 controller: 'GetPublicationsJson'
-                 }
-                 }
-                 })
+    .state('app.publications', {
+       url: '/publications',
+       views: {
+         'menuContent': {
+           templateUrl: 'templates/publications.html',
+           controller: 'GetPublicationsJson'
+         }
+       }
+    })
 
-          .state('app.publicationDetails', {
-                 // params: { teacher: null, }
-                 url: '/:publicationId',
-                 params : { publication: null, },
-                 views: {
-                 'menuContent': {
-                 templateUrl: 'templates/publication.html',
-                 controller: 'PublicationCtrl'
-                 }
-                 }
-                 })
-
-
-
-        .state('app.teachersDetails', {
-               // params: { teacher: null, }
-               url: '/:teacherId',
-               params : { teacher: null, },
-               views: {
-               'menuContent': {
-               templateUrl: 'templates/teacher.html',
-               controller: 'TeacherCtrl'
-               }
-               }
-               })
+    .state('app.publicationDetails', {
+       url: '/:publicationId',
+       params : { publication: null, },
+       views: {
+         'menuContent': {
+           templateUrl: 'templates/publication.html',
+           controller: 'PublicationCtrl'
+         }
+       }
+    })
 
 
 
-        .state('app.schedule', {
-               // params: { teacher: null, }
-               url: '/:groupName',
-               params : { group: null, },
-               views: {
-               'menuContent': {
-               templateUrl: 'templates/schedule.html',
-               controller: 'ScheduleCtrl'
-               }
-               }
-               })
+    .state('app.teachersDetails', {
+       url: '/:teacherId',
+       params : { teacher: null, },
+       views: {
+         'menuContent': {
+           templateUrl: 'templates/teacher.html',
+           controller: 'TeacherCtrl'
+         }
+       }
+    })
+
+
+
+    .state('app.schedule', {
+           // params: { teacher: null, }
+       url: '/:groupName',
+       params : { group: null, },
+       views: {
+         'menuContent': {
+           templateUrl: 'templates/schedule.html',
+           controller: 'ScheduleCtrl'
+         }
+       }
+    })
 
     .state('app.plandetails', {
 

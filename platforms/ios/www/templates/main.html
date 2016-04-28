@@ -20,9 +20,43 @@
 
     </ion-content>
     <div class="bar bar-footer bar-energized">
-  <button class="button button-clear pull-right"> Читать дальше...
-    <i class="icon ion-ios-arrow-forward icon-accessory"></i>
-</button>
+        <button class="button item-icon-right button-clear pull-center" style="width:100%;" ng-click="modal.show()">Читать дальше...
+          <i class="icon ion-ios-arrow-up icon-accessory" style="color:white;"></i>
+        </button>
+    </div>
+
+    <script id="mainpagedecription.html" type="text/ng-template" ng-controller="mainpageCtrl">
+         <ion-modal-view >
+           <ion-header-bar class="bar bar-header bar-energized">
+             <h1 class="title">О кафедре</h1>
+             <button class="button button-clear button-primary" ng-click="modal.hide()">Закрыть</button>
+           </ion-header-bar>
+           <ion-content class="padding" style="color:#444;">
+           <p>Кафедра проводит подготовку специалистов по программе
+               второго высшего образования. В программу подготовки включено изучение:
+               компьютерных технологий; глобальных и локальных компьютерных систем, сетей
+               и их программного обеспечения; телекоммуникационных технологий;
+               Internet/Intranet - технологий; проблем разработки баз данных.</p>
+
+               <p>На кафедре действует центр обучения корпорации ALTERA.
+               Центр проводит курсы по направлению Проектирование цифровых устройств
+               с использованием программируемых логических интегральных схем ALTERA.</p>
+
+               <p>На базе кафедры организована Локальная Сетевая Академия CISCO.
+               В сентябре 2002 года планируется приступить к проведению занятий по программе
+               CCNA по направлениям Сетевые технологии и Сетевые технологии фирмы CISCO.</p>
+
+               <p>На кафедре ведется научная работа по темам проектирования
+               интеллектуальных информационных систем,информационно-измерительных систем,
+               теории и практики обработки цифровой информации.</p>
+
+               <p>Кафедра была создана в 1965 году в связи с существенным расширением
+               применения информационно-измерительной техники в МВТУ им. Н.Э.Баумана
+               на базе кафедры "Элементы автоматики и телемеханики".</p>
+           </ion-content>
+         </ion-modal-view>
+       </script>
+
 </div>
 
 </ion-view>
