@@ -46,7 +46,7 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
         var filterBarInstance;
 
         $ionicLoading.show({
-          template: '<ion-spinner icon="circles"></ion-spinner><br/>'
+          template: '<ion-spinner icon="ios"></ion-spinner><br/>'
          });
 
         function getItems () {
@@ -148,7 +148,7 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
         var filterBarInstance;
 
         $ionicLoading.show({
-          template: '<ion-spinner icon="circles"></ion-spinner><br/>'
+          template: '<ion-spinner icon="ios"></ion-spinner><br/>'
          });
 
         function getItems () {
@@ -271,11 +271,15 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
 
 }])
 
-.controller('GroupsCtrl', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
+.controller('GroupsCtrl', ['$scope', '$http', '$stateParams', '$ionicLoading', function($scope, $http, $stateParams, $ionicLoading) {
+                          $ionicLoading.show({
+                            template: '<ion-spinner icon="ios"></ion-spinner><br/>'
+                           });
                            function getItems () {
                            $http.get("http://iu3.bmstu.ru/WebApi/GroupNames")
                            .success(function (data) {
                                     $scope.items = data;
+                                    $ionicLoading.hide();
                                     });
                            }
 
@@ -283,11 +287,16 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
 
 }])
 
-.controller('PlanCtrl', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
+.controller('PlanCtrl', ['$scope', '$http', '$stateParams', '$ionicLoading', function($scope, $http, $stateParams, $ionicLoading) {
+
+                          $ionicLoading.show({
+                            template: '<ion-spinner icon="ios"></ion-spinner><br/>'
+                           });
                            function getItems () {
                            $http.get("http://iu3.bmstu.ru/WebApi/StudyPlanList")
                            .success(function (data) {
                                     $scope.items = data;
+                                    $ionicLoading.hide();
                                     });
                            }
 
@@ -502,7 +511,8 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
 
 }])
 
-.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoading, $ionicPlatform) {
+
+.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoading, $ionicPlatform, $ionicModal) {
 
             $ionicPlatform.ready(function() {
 
@@ -544,6 +554,31 @@ angular.module('iu3App.controllers', ['ionic', 'ngCordova', 'ngCordovaBeacon', '
                                      console.log(err);
                                      });
           });
+
+          $ionicModal.fromTemplateUrl('contactsdetails.html', {
+          scope: $scope,
+          animation: 'slide-in-up'
+        }).then(function(modal) {
+          $scope.modal = modal;
+        });
+        $scope.openModal = function() {
+          $scope.modal.show();
+        };
+        $scope.closeModal = function() {
+          $scope.modal.hide();
+        };
+        // Cleanup the modal when we're done with it!
+        $scope.$on('$destroy', function() {
+          $scope.modal.remove();
+        });
+        // Execute action on hide modal
+        $scope.$on('modal.hidden', function() {
+          // Execute action
+        });
+        // Execute action on remove modal
+        $scope.$on('modal.removed', function() {
+          // Execute action
+        });
 })
 
 .controller('BeaconCtrl', function($scope, $rootScope, $ionicPlatform, $cordovaBeacon) {

@@ -16,9 +16,21 @@
         </button> -->
     </ion-content>
     <div class="bar bar-footer bar-energized">
-  <button class="button button-clear pull-right">Дополнительные контакты...
-    <i class="icon ion-ios-arrow-forward icon-accessory"></i>
-</button>
-</div>
+        <button class="button item-icon-right button-clear pull-center" style="width:100%;" ng-click="modal.show()">Дополнительные контакты...
+          <i class="icon ion-ios-arrow-up icon-accessory" style="color:white;"></i>
+        </button>
+    </div>
+
+    <script id="contactsdetails.html" type="text/ng-template" ng-controller="MapController">
+         <ion-modal-view >
+           <ion-header-bar class="bar bar-header bar-energized">
+             <h1 class="title">Дополнительные контакты</h1>
+             <button class="button button-clear button-primary" ng-click="modal.hide()">Закрыть</button>
+           </ion-header-bar>
+           <ion-content class="padding" style="color:#444;">
+           <p>Дополнительные контакты...</p>
+           </ion-content>
+         </ion-modal-view>
+       </script>
 </ion-view>
 <script src="https://maps-api-ssl.google.com/maps/api/js?libraries=places"></script>
